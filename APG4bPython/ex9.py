@@ -1,3 +1,6 @@
+import math
+
+
 n = int(input())
 a = int(input())
 inputs = list()
@@ -37,7 +40,7 @@ class Calculator:
     
     @staticmethod
     def div(a, b):            
-        return int(a / b)
+        return math.floor(a / b)
     
 
 for _ in range(n):
