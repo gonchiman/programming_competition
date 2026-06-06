@@ -37,10 +37,10 @@ for key in max_values:
                     selected_jews[j] = jew
 
 selected_jews_2 = []
+selected_jews_index = [x.index for x in selected_jews]
 
-for j, jew in enumerate(C_V):
-    selected_jews_index = [x.index for x in selected_jews]
-    if j in selected_jews_index:
+for i, jew in enumerate(C_V): 
+    if i in selected_jews_index:
         continue
     else:
         if len(selected_jews_2) < (K - M):
@@ -50,7 +50,7 @@ for j, jew in enumerate(C_V):
             if jew.value > min(values):
                 for j, selected_jew in enumerate(selected_jews_2):
                     if selected_jew.value == min(values):
-                        selected_jews[j] = jew
+                        selected_jews_2[j] = jew
 
 
 sum_1 = sum([x.value for x in selected_jews])
