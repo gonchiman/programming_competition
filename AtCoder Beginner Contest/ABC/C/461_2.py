@@ -16,27 +16,25 @@ for i in range(N):
         if value > rep_value:
             reps[color] = (value, i)
 
-ignore_index = list()
+ignore_index = set()
 reps_temp = list(reps.values())
 
 reps_temp.sort(key=lambda x: x[0], reverse=True)
 for i in range(M):
 	index = reps_temp[i][1]
-	ignore_index.append(index)
+	ignore_index.add(index)
 
 selected = list()
-if (K - M) > 0:
-    for i, gem in enumerate(GEMS):
-        if i in ignore_index:
-            continue
-        
-        value = gem[1]
-        selected.sort()
-        if len(selected) < (K - M) :
-            selected.append(value)
-        else:
-            if value > selected[0]:
-                selected[0] = value
+remaining_values = list()
+for i, gem in enumerate(GEMS):
+    if i in ignore_index:
+        continue
+    
+    value = gem[1]
+    remaining_values.append(value)
+
+remaining_values.sort(reverse=True)
+selected = remaining_values[:K-M]
 			
 sum_value = sum(selected)
 for i in ignore_index:
