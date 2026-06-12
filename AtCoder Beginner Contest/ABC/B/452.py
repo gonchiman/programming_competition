@@ -1,19 +1,14 @@
-N = int(input())
-AB = [list(map(int, input().split())) for _ in range(N)]
-M = int(input())
-S = [input() for _ in range(M)]
+H, W = map(int, input().split())
 
 
-for s in S:
-    is_satisfied = True
-    if len(s) == N:
-        for i, c in enumerate(s):
-            if c in [s2[AB[i][1]-1] if len(s2) >= AB[i][1] else None for s2 in S]:
-                pass
-            else:
-                is_satisfied = False
-                break
-    else:
-        is_satisfied = False
-
-    print("Yes") if is_satisfied else print("No")
+for i in range(H):
+    row = str()
+    for j in range(W):
+        if i == 0 or i == H-1:
+            row += "#"
+        elif j == 0 or j == W-1:
+            row += "#"
+        else:
+            row += "."
+    
+    print(row)
