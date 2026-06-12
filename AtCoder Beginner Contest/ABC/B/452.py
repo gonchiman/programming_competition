@@ -4,7 +4,6 @@ M = int(input())
 S = [input() for _ in range(M)]
 
 
-is_satisfied = list()
 for s in S:
     is_satisfied = True
     if len(s) == N:
