@@ -1,25 +1,28 @@
 N = int(input())
-AB = [list(map(int, input().split())) for _ in range(N)]
+AB = [tuple(map(int, input().split())) for _ in range(N)]
 M = int(input())
 S = [input() for _ in range(M)]
 
-candidate_sets = []
+can = [[set() for _ in range(10)] for _ in range(11)]
 
-for i in range(N):
-    b = AB[i][1] - 1
-    chars = {s2[b] for s2 in S if len(s2) > b}
-    candidate_sets.append(chars)
+for s in S:
+    L = len(s)
+    for pos, c in enumerate(s):
+        can[L][pos].add(c)
 
 for s in S:
     if len(s) != N:
         print("No")
         continue
 
-    is_satisfied = True
+    ok = True
 
     for i, c in enumerate(s):
-        if c not in candidate_sets[i]:
-            is_satisfied = False
+        A, B = AB[i]
+        pos = B - 1
+
+        if c not in can[A][pos]:
+            ok = False
             break
 
-    print("Yes" if is_satisfied else "No")
+    print("Yes" if ok else "No")
