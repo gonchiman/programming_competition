@@ -27,8 +27,8 @@ x1, y1 = p_of_min_x
 x2, y2 = p_of_min_y
 
 if not p_of_min_x == p_of_min_y:
-    a = (y2-y1)/(x2-x1)
-    b = y1 - (y2-y1)/(x2-x1)
+    a = (y2 - y1) / (x2 - x1)
+    b = y1 - a * x1
 
 # print(a)
 # print(b)
