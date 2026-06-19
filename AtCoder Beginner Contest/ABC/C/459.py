@@ -1,10 +1,11 @@
+import numpy as np
+
+
 N, Q = map(int, input().split())
 queries = [list(map(int, input().split())) for _ in range(Q)]
 
 
-cols = []
-for _ in range(N):
-    cols.append(0)
+cols = np.zeros(N, dtype=np.int64)
 
 sum = 0
 for query in queries:
@@ -17,15 +18,10 @@ for query in queries:
             sum += 1
         # すべてのマスが埋まったら、1行削除する
         if sum == N:
-            for i in range(N):
-                cols[i] -= 1
-                sum = 0
-            for col in cols:
-                if col > 0:
-                    sum += 1
+            cols -= 1
+            # ブロックがあるマスを数える
+            sum = np.sum(cols > 0)
     else:
         count = 0
-        for col in cols:
-            if col >= query[1]:
-                count += 1
+        count = int(np.count_nonzero(cols >= query[1]))
         print(count)
