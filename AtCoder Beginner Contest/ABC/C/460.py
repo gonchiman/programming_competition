@@ -1,18 +1,19 @@
 N, M = map(int, input().split())
-A = list(map(int, input().split())) # シャリの重さ
-B = list(map(int, input().split())) # ネタの重さ
+A = list(map(int, input().split()))  # シャリの重さ
+B = list(map(int, input().split()))  # ネタの重さ
 
-
-# B <= 2A
+A.sort()
+B.sort()
 
 count = 0
-sorted_a = sorted(A)
-sorted_b = sorted(B)
+j = 0  # 次に見るネタの位置
 
-for a in sorted_a:
-    if sorted_b[0] <= 2 * a and len(sorted_b) != 0:
+for a in A:
+    if j == M:
+        break
+
+    if B[j] <= 2 * a:
         count += 1
-        del sorted_b[0]
-
+        j += 1
 
 print(count)
