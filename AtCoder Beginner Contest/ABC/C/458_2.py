@@ -2,10 +2,16 @@ S = input()
 
 
 cent_ind = (len(S) - 1) / 2
-max_cnt = round(cent_ind + 1)
+most_left = 0
+most_right = len(S) - 1
 count = 0
 for i, s in enumerate(S):
     if s == "C":
-        count += max_cnt - abs(round(cent_ind - i))
+        if i == cent_ind:
+            count += 1 + i
+        elif i < cent_ind:
+            count += 1 + i
+        else:
+            count += 1 + (most_right - i)
 
 print(count)
