@@ -1,6 +1,8 @@
 import random
 import sys
+from functools import cache
 input = sys.stdin.readline
+sys.setrecursionlimit(10**5)
 
 
 N, M = map(int, input().split())
@@ -10,7 +12,6 @@ AB = [list(map(int, input().split())) for _ in range(M)]
 # for _ in range(M):
 #     a, b = random.sample(candidate, 2)
 #     AB.append([a, b])
-
 # print(AB)
 
 item_dict = {}
@@ -22,17 +23,18 @@ for ab in AB:
     item_dict[a].append(b)
 
 item_set = set()
+@cache
 def item_counter(x):
     if x in item_set:
         return
     children = item_dict[x]
+    item_set.add(x)
     if len(children) != 0:
         for child in item_dict[x]:
             item_counter(child)
-        item_set.update(children)
+        # item_set.update(children)
 
 item_counter(1)
-item_set.add(1)
 
 res = len(item_set)
 
