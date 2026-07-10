@@ -3,26 +3,33 @@ t = input()
 
 ss = s.replace("A", "")
 tt = t.replace("A", "")
-# print(ss)
-# print(tt)
+# print(f"ss: {ss}")
+# print(f"tt: {tt}")
 
 if ss != tt:
     print(-1)
 else:
-    s_list = [0] * (len(ss) + 1)
-    t_list = [0] * (len(tt) + 1)
+    s_list = []
+    t_list = []
     cnt = 0
     for sss in s:
-        if sss != "A":
+        if sss == "A":
             cnt += 1
         else:
-            s_list.append(sss)
+            s_list.append(cnt)
             cnt = 0
+    s_list.append(cnt)
     cnt = 0
     for ttt in t:
-        if ttt != "A":
+        if ttt == "A":
             cnt += 1
         else:
-            t_list.append(sss)
+            t_list.append(cnt)
             cnt = 0
-    for i in range(s_list)
+    t_list.append(cnt)
+    # print(f"s_list: {s_list}")
+    # print(f"t_list: {t_list}")
+    res = 0
+    for i in range(len(s_list)):
+        res += abs(s_list[i] - t_list[i])
+    print(res)
