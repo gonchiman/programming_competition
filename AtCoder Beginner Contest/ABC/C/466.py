@@ -1,32 +1,22 @@
 n = int(input())
 
-def ask(i, j):
-    print(f"? {i} {j}")
-    print()
+l = 1
+r = 2
+ans = 0
 
-def kaijou(x):
-    kaijou = 1
-    for i in range(x):
-        i = i + 1
-        kaijou *= i
-    return kaijou
+while r <= n:
+    print(f"? {l} {r}")
+    s = input()
+    if s == "Yes":
+        r += 1
+    else:
+        ans += r - l -1
+        l += 1
+        if l == r:
+            r += 1
 
-x = 0
-res = 0
-for i in range(n):
-    if x == 0:
-        break
-    i = i + 1
-    for j in range(n, x, -1):
-        j = j + 1
-        ask(i, j)
-        judge = input()
-        if judge == "Yes":
-            x = n - j
-            if j - i == 1:
-                res += 1
-            else:
-                res += kaijou(j-i) / 2
-            break
-        if judge == "No":
-            
+while l < n:
+    ans += r - l - 1
+    l += 1
+
+print(f"! {ans}")
